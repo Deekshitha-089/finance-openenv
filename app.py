@@ -2,14 +2,12 @@ from fastapi import FastAPI
 from env.environment import FinanceEnv
 
 app = FastAPI()
-
 env = FinanceEnv()
 
 @app.get("/")
 def home():
     return {"message": "Finance OpenEnv running"}
 
-# FIX: support BOTH GET and POST
 @app.get("/reset")
 @app.post("/reset")
 def reset():
@@ -27,3 +25,6 @@ def step(action: str):
         "reward": reward,
         "done": done
     }
+
+def main():
+    return app
