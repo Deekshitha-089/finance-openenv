@@ -1,0 +1,7 @@
+name: finance-env
+description: AI environment for personal finance decision making
+
+tasks:
+  - id: easy
+  - id: medium
+  - id: hard
