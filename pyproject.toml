@@ -1,9 +1,17 @@
 [project]
 name = "finance-openenv"
 version = "0.1.0"
-description = "Finance OpenEnv Environment for AI agents"
+description = "Finance OpenEnv Environment"
 authors = [{name = "Deekshitha"}]
-dependencies = []
+
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "openenv-core>=0.2.0"
+]
+
+[project.scripts]
+server = "server.app:main"
 
 [build-system]
 requires = ["setuptools"]

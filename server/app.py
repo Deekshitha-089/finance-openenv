@@ -26,5 +26,6 @@ def step(action: str):
         "done": done
     }
 
+# IMPORTANT: required by OpenEnv validator
 def main():
     return app
