@@ -18,6 +18,9 @@ This environment simulates personal finance decision making where an AI agent ma
 - spend: increases expenses
 - invest: risky balance growth
 
+### Intelligent Policy
+The agent dynamically adapts actions based on financial state, prioritizing savings stability and controlled investment.
+
 ## State
 - balance
 - savings
