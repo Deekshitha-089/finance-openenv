@@ -1,18 +1,7 @@
-from fastapi import FastAPI
-from pydantic import BaseModel
 from env.environment import FinanceEnv
-
-app = FastAPI()
 
 env = FinanceEnv()
 
-
-# -------- INPUT FORMAT --------
-class InputData(BaseModel):
-    task: str   # "easy", "medium", "hard"
-
-
-# -------- YOUR SMART POLICY --------
 def smart_policy(state, last_reward):
     balance = state["balance"]
     savings = state["savings"]
@@ -34,43 +23,38 @@ def smart_policy(state, last_reward):
     return "save"
 
 
-# -------- CORE RUN FUNCTION --------
 def run_task(task_name):
     state = env.reset()
     total_reward = 0
     last_reward = 0
 
+    print(f"\nRunning {task_name}...")
+
     for step in range(10):
         action = smart_policy(state, last_reward)
         state, reward, done, _ = env.step(action)
 
+        print(f"Step {step+1}: Action={action}, Reward={reward}, State={state}")
+
         total_reward += reward
         last_reward = reward
 
+        # stop if balance too low
         if state["balance"] < 4000:
             break
 
     score = min(max(total_reward / 10, 0), 1)
+    print(f"{task_name.upper()} TASK SCORE: {score}")
     return score
 
 
-# -------- ROOT CHECK --------
-@app.get("/")
-def home():
-    return {"message": "Finance OpenEnv API running"}
+def main():
+    scores = {}
+    for task in ["easy", "medium", "hard"]:
+        scores[task] = run_task(task)
+
+    print("\nFINAL SCORES:", scores)
 
 
-# -------- REQUIRED ENDPOINT --------
-@app.post("/predict")
-def predict(data: InputData):
-    task = data.task.lower()
-
-    if task not in ["easy", "medium", "hard"]:
-        return {"error": "Invalid task"}
-
-    score = run_task(task)
-
-    return {
-        "task": task,
-        "score": score
-    }
+if __name__ == "__main__":
+    main()
