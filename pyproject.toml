@@ -1,0 +1,10 @@
+[project]
+name = "finance-openenv"
+version = "0.1.0"
+description = "Finance OpenEnv Environment for AI agents"
+authors = [{name = "Deekshitha"}]
+dependencies = []
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
