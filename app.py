@@ -25,6 +25,3 @@ def step(action: str):
         "reward": reward,
         "done": done
     }
-
-def main():
-    return app
