@@ -9,7 +9,9 @@ env = FinanceEnv()
 def home():
     return {"message": "Finance OpenEnv running"}
 
+# FIX: support BOTH GET and POST
 @app.get("/reset")
+@app.post("/reset")
 def reset():
     return env.reset()
 
