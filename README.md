@@ -1,3 +1,13 @@
+---
+title: Finance OpenEnv
+emoji: 💰
+colorFrom: blue
+colorTo: green
+sdk: docker
+app_file: app.py
+pinned: false
+---
+
 # Finance OpenEnv Environment
 
 ## Description
@@ -24,6 +34,6 @@ This environment simulates personal finance decision making where an AI agent ma
 - Spending gives negative reward
 - Investment gives variable reward
 
-## How to Run
+## Run
 ```bash
 python3 inference.py
